@@ -1,0 +1,295 @@
+% Compile with pdfLaTeX. This file is self-contained.
+% Replace gray bracketed fields and remove any unneeded optional entries.
+% The two explicit page breaks set the draft's page layout. Remove or move
+% them as you add material. LaTeX will then paginate the content normally.
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+% \usepackage{libertinus} % Body font. Headings explicitly select Latin Modern Roman.
+\usepackage{sourceserif}
+\usepackage[letterpaper,top=0.77in,bottom=0.78in,left=0.83in,right=0.83in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{array,tabularx,enumitem,needspace,fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{hyperref}
+
+% Set to \showresearchinterestsfalse to hide the Research Interests section.
+\newif\ifshowresearchinterests
+\showresearchinterestsfalse
+
+% Add your email address and your full website URL (including https://).
+\newcommand*{\personalemail}{nafisazad@usf.edu}
+\newcommand*{\personalwebsite}{https://nafis10670.github.io/}
+\newcommand{\linkedinurl}{https://www.linkedin.com/in/nafissaami/}
+
+\definecolor{accent}{HTML}{031d44}
+\definecolor{ink}{HTML}{0a0908}
+\definecolor{muted}{HTML}{292C32}
+\definecolor{rulegray}{HTML}{7D8996}
+\definecolor{green}{HTML}{1D6B41}
+
+\hypersetup{
+  pdftitle={Nafis Saami Azad | Academic CV},
+  pdfauthor={Nafis Saami Azad},
+  colorlinks=true,
+  urlcolor=accent
+}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\headheight}{15pt}
+\setlength{\footskip}{31pt}
+\linespread{1.075}
+\raggedbottom
+\color{ink}
+\setlist[itemize]{leftmargin=1.35em,label=\textcolor{accent}{\textbullet},
+  topsep=3pt,itemsep=3pt,parsep=0pt,partopsep=0pt}
+
+\newcommand{\name}{Nafis Saami Azad}
+\newcommand{\field}[1]{\textcolor{muted}{[#1]}}
+\newcommand{\divider}{\unskip\enspace\textcolor{rulegray}{\textbar}\enspace}
+\newcommand{\detail}[1]{{\color{muted}\small #1}}
+\newcommand{\heading}[1]{%
+  \par\Needspace{5\baselineskip}\addvspace{12pt}%
+  \noindent\makebox[\linewidth]{%
+    {\color{rulegray}\leaders\hrule height 0.4pt\hfill}%
+    \hspace{10pt}{\color{accent}\large\fontseries{bx}\selectfont\textls[135]{\MakeUppercase{#1}}}%
+    \hspace{10pt}{\color{rulegray}\leaders\hrule height 0.4pt\hfill}%
+  }\par\nobreak\vspace{5pt}%
+}
+\newcommand{\entry}[3]{%
+  \par\Needspace{4\baselineskip}\addvspace{8pt}%
+  \begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X@{\hspace{1em}}r@{}}
+    \large\textbf{#1} & \detail{#2}\\
+  \end{tabularx}\par\nobreak
+  \if\relax\detokenize{#3}\relax\else\detail{\textit{#3}}\par\nobreak\fi
+}
+\newcommand{\cvsubheading}[1]{%
+  \par\Needspace{4\baselineskip}\addvspace{7pt}%
+  {\large\fontseries{sb}\selectfont\color{accent}#1}\par\nobreak
+}
+\newcommand{\bodytext}[1]{\vspace{3pt}#1\par}
+% Indent the research details and project headings within each appointment.
+\newenvironment{researchdetails}{\par\setlength{\leftskip}{1.7em}}{\par}
+% Hang the bullet in the existing left margin without moving the text.
+\newcommand{\researchbullet}{\makebox[0pt][r]{\textcolor{accent}{\textbullet}\hspace{0.5em}}}
+% Manuscript types: J = Journal, C = Conference, W = Workshop,
+% P = Preprint, T = Technical Report, M = Manuscript (venue unspecified).
+\newcommand{\citationentry}[4]{%
+  \par\Needspace{5\baselineskip}\addvspace{7pt}%
+  \textcolor{accent}{\textbf{[#1]}}\enspace\textbf{#2}\par\nobreak
+  \detail{#3}\par\nobreak
+  \addvspace{-0.7pt}\bodytext{#4}%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\small\color{muted}\thepage}
+
+% Font Awesome icons. A positive optional offset raises an individual icon.
+% Adjust the kern to change the gap between the icon and its label.
+\newcommand{\contacticon}[2][0ex]{%
+  \raisebox{#1}{\textcolor{accent}{\footnotesize\faIcon{#2}}}%
+  \kern0.35em%
+}
+
+\begin{document}
+
+{\centering
+  {\fontsize{34}{37}\selectfont \name\par}
+  \vspace{7pt}
+  % {\large Ph.D. Student in Computer Science\par}
+  % \vspace{9pt}
+  {\small
+    \ifx\personalemail\empty
+      \contacticon{envelope}\field{Email}%
+    \else
+      \href{mailto:\personalemail}{\contacticon{envelope} nafisazad@usf.edu}%
+    \fi
+    \divider
+    \ifx\personalwebsite\empty
+      \contacticon{globe}\field{Personal website}%
+    \else
+      \href{\personalwebsite}{\contacticon{globe}Website}%
+    \fi
+    \divider
+    \href{\linkedinurl}{\contacticon{linkedin} nafissaami}%
+    \divider\href{https://github.com/nafis10670}{\contacticon{github} nafis10670}%
+    % \divider\href{https://scholar.google.com/citations?user=8W-7r3QAAAAJ&hl=en}{\contacticon{GoogleScholar} nafis10670}%
+    \\[3pt]
+    \mbox{\contacticon{map-marker-alt}\textcolor{accent}{Tampa, FL}}\divider\href{tel:+18135219385}{\contacticon{phone}(813) 521-9385}\par
+  }
+}
+
+\ifshowresearchinterests
+\heading{Research Interests}
+
+I study how AI assistance shapes human creativity and collective outcomes. I combine human-subject experiment design, computational evaluation, and formal modeling to understand when AI improves individual creative work while making ideas across users more similar.
+
+\vspace{7pt}
+\detail{Human--Computer Interaction \textbullet{} Human--AI Interaction \textbullet{} Computational Creativity\par
+Computational Social Science \textbullet{} Game Theory and Collective Behavior}
+
+\fi
+
+\heading{Education}
+
+\entry{University of South Florida}{Aug 2024--Present}{Tampa, FL}
+\bodytext{Ph.D. in Computer Science\par
+Bellini College of Artificial Intelligence, Cybersecurity, and Computing}
+
+% \entry{University of South Florida}{Aug 2024--Dec 2026}{Tampa, FL}
+% \bodytext{MS in Computer Science\par
+% Bellini College of Artificial Intelligence, Cybersecurity, and Computing\par
+% CGPA: 3.85 / 4.00}
+
+\entry{Islamic University of Technology}{Jan 2018--Jun 2022}{Bangladesh}
+\bodytext{B.Sc. in Software Engineering\par
+CGPA: 3.70 / 4.00}
+
+\heading{Publications and Manuscripts}
+% \detail{[J] Journal \enspace [C] Conference \enspace [W] Workshop \enspace [P] Preprint \enspace [T] Technical report \enspace [M] Manuscript}\par
+\cvsubheading{Peer-Reviewed Publications}
+
+\citationentry{J1}{Adoption of Unmanned Aerial Vehicle (UAV) Imagery in Agriculture Management: A Systematic Literature Review}
+  {Md. Abrar Istiak, M. M. Mahbubul Syeed, Md. Shakhawat Hossain, Md. Faisal Uddin, Mahady Hassan, Razib Hayat Khan, and \textbf{Nafis Saami Azad}.}
+  {Dec 2023 \divider \href{https://doi.org/10.1016/j.ecoinf.2023.102305}{doi:10.1016/j.ecoinf.2023.102305}}
+
+\addvspace{15pt}
+\cvsubheading{Manuscripts Under Review}
+
+\citationentry{C1}{Reference Design for Efficient LLM Candidate Pool Diversification}
+  {Fares Nabil Ibrahim and \textbf{Nafis Saami Azad} (equal contribution), and Raiyan Abdul Baten.}
+  {\textit{Under review at NAACL}. Evaluates how generation references affect candidate diversity, quality, and inference cost.}
+
+\addvspace{15pt}
+\cvsubheading{Work in Progress}
+
+
+\citationentry{M1}{When Is Model-Only Evaluation Enough? Source Parity and AI-Induced Diversity Collapse}
+  {\textbf{Nafis Saami Azad} and Raiyan Abdul Baten.}
+  {\textit{Manuscript in preparation.} Examines downstream risks to collective diversity.}
+  
+% \citationentry{M2}{Does Low Rank Preserve Diversity? LoRA Rank and Output Diversity in DPO}
+%   {Nafis Saami Azad, }
+%   {\textit{Manuscript in preparation.} Tests whether LoRA rank changes diversity loss in DPO at matched KL from the reference model.}
+
+
+% \newpage
+
+\heading{Research Experience}
+
+\cvsubheading{Ongoing Research Projects}
+\begin{researchdetails}
+\bodytext{\researchbullet\textbf{Divergence Instructions in AI-Assisted Ideation.}
+\textit{Data Collection Phase.} A three-arm experiment with unaided, neutral AI-assistance, and divergence-instruction conditions to test whether explicit divergence instructions preserve collective idea diversity.}
+\Needspace{4\baselineskip}
+\bodytext{\researchbullet\textbf{LoRA Rank and Output Diversity in DPO.}
+\textit{Manuscript in preparation.} A matched-KL comparison of LoRA and full fine-tuning, and a paired prompt bootstrap to quantify uncertainty in semantic diversity differences.}
+\end{researchdetails}
+
+
+\entry{Research \& Teaching Assistant}{Aug 2024--Present}{University of South Florida}
+\bodytext{Prior research with Dr. Raiyan Abdul Baten on human-AI collaboration and computational creativity.}
+
+\begin{researchdetails}
+
+\cvsubheading{\researchbullet \normalsize \textbf{AI-Assisted Ideation and Collective Diversity}}
+\bodytext{Developed a mean-field model linking pairwise idea overlap to the incentives for adopting AI. Compared model-only output overlap with an unaided-human baseline to examine when it can signal a risk of reduced downstream collective diversity.}
+
+\cvsubheading{\researchbullet \normalsize \textbf{Diversifying LLM Candidate Pools}}
+\bodytext{Co-authored a study comparing three generation strategies for creative writing and alternative-use tasks. The evaluation covered global diversity, local distinctiveness, individual quality, and inference token cost.}
+
+\cvsubheading{\researchbullet \normalsize \textbf{Creative Ideation Experiments and Platform}}
+\bodytext{Built an Empirica interface with timed rounds, staged AI and peer suggestions, and response capture for slogans and alternative-use task (AUT).}
+
+\end{researchdetails}
+
+\entry{Graduate Research Assistant}{Sep 2022--Jul 2023}{RIoT Center, Independent University, Bangladesh}
+\begin{researchdetails}
+\bodytext{\researchbullet Co-authored a systematic literature review of UAV imagery adoption in agricultural management.}
+\end{researchdetails}
+
+\heading{Research Methods and Tools}
+
+\entry{Human-subject experiment design}{}{}
+\bodytext{IRB protocol drafting and revision, controlled comparisons, online experiment implementation, behavioral data collection, and survey design. Proficient with the \textit{Prolific} data collection infrastructure.}
+
+\entry{Quantitative and computational methods}{}{}
+\bodytext{Embedding-based semantic similarity, nearest-neighbor and coverage metrics, bootstrap uncertainty, nonlinear curve fitting, game theory, and mean-field modeling.}
+
+\entry{Programming and research infrastructure}{}{}
+\bodytext{Python, pandas, NumPy, SciPy, Sentence Transformers, Hugging Face, Prolific, Empirica, React, Node.js, MongoDB, Linux, Slurm, and LaTeX.\par
+Additional tools and languages include Java, C++, C\#, JavaScript, HTML/CSS, R, IBM SPSS, Microsoft Excel, and Google Sheets.}
+\entry{Agentic coding}{}{}
+\bodytext{Proficient with Claude Code and other agentic coding tools, including multi-agent context management, task decomposition, iterative implementation, testing, and review.}
+
+
+% \newpage
+
+\heading{Teaching Experience}
+
+\entry{Graduate Teaching Assistant}{Fall 2024--Present}{University of South Florida}
+\bodytext{Teaching Assistant for the following courses:
+
+\begin{itemize}
+    \item COP 4703 - Advanced Database Systems for IT
+    \item COP 4600 - Operating Systems
+    \item CDA 4205 - Computer Architecture
+    \item CAI 5133 - Social Media Mining
+    \item CIS 4083 - Cloud Computing for IT
+\end{itemize}}
+
+% \newpage
+\entry{Lecturer}{Oct 2023--Jul 2024}{Bangladesh University of Business \& Technology, Dhaka, Bangladesh}
+\bodytext{Delivered undergraduate lectures.\par
+\begin{itemize}
+    \item CSE 407, Software Project Management and Professional Ethics\par
+    \item CSE 317, System Analysis and Design\par
+    \item CSE 111, Structured Programming Language
+\end{itemize}}
+
+\entry{Adjunct Lecturer}{Sep 2022--Jul 2023}{Independent University, Bangladesh, Dhaka, Bangladesh}
+\bodytext{Led hands-on undergraduate lab sections.\par
+\begin{itemize}
+    \item CSE 317L, Numerical Methods\par
+    \item CSE 203L, Data Structure Lab\par
+    \item CSE 305L, Object Oriented Programming Lab\par
+    \item CIS 101L, Fundamentals of Computer Systems
+\end{itemize}}
+
+\heading{Service and Leadership}
+
+\entry{Treasurer}{2026--2027}{Bangladesh Student Association, University of South Florida}
+\bodytext{Coordinated event budgeting, fundraising, and contribution tracking with the executive board.}
+
+\entry{Logistics Secretary}{2021--2022}{IUT Computer Society, Islamic University of Technology, Bangladesh}
+\bodytext{Coordinated event logistics, including venue arrangements, resource allocation, equipment management, and on-site operations to ensure smooth event execution.}
+
+% \entry{Front-End Team Lead}{\field{Start--end dates}}{\field{Organization}}
+% \bodytext{Led a team of front-end interns, assigned weekly work, and coordinated website improvement tasks.}
+
+% Optional sections. Change \iffalse to \iftrue to include these placeholders.
+\iffalse
+\heading{Presentations and Posters}
+
+\entry{\field{Talk or poster title}}{\field{Month year}}{\field{Venue, event, or institution}}
+\bodytext{\field{Invited talk, conference presentation, poster, or research seminar}}
+
+\heading{Honors and Funding}
+
+\entry{\field{Award, fellowship, or scholarship}}{\field{Year}}{\field{Awarding organization}}
+
+\heading{References}
+
+\entry{\field{Name and academic title}}{}{\field{Institution and email}}
+\entry{\field{Name and academic title}}{}{\field{Institution and email}}
+
+\fi
+
+\end{document}
